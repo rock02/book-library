@@ -25,19 +25,31 @@ Serviços disponiveis:
 -	Obs.: JDBC URL: jdbc:h2:mem:alelo-BookLibrary
 
 # O que gostaríamos de ver neste desafio
-1.	Escrita dos cenários utilizando o BDD
-2.	Desenvolvimento dos Testes Integrados dos serviços disponibilizados no swagger
-3.	Report dos Testes Integrados
-4.	Build do projeto executando os Testes Integrados
+1.BDD
+ 1. Escrita dos cenários
+ 2. Reutilização dos Gherkins
+ 3. Legibilidade
+
+2.Desenvolvimento dos Testes Integrados 
+ 
+ 1. Serviços disponibilizados no swagger
+	
+	- POST; GET; PATH;
 
 # **O que será avaliado**
--	Código fonte
--	Boas práticas de programação e padrões de projeto
--	Cobertura dos cenários dos testes integrados
--	Build e execução dos testes integrados
+1.Código fonte
+ -	Boas práticas de programação
+ -	padrões de projeto
+
+2.Testes integrados
+ -	Cobertura dos cenários
+ -	Execução
+ -	Report
+ 
+3.Build com os testes integrados
 
 # O que será um diferencial
-1.	PIPE em qualquer ferramenta de CI
+-	PIPE em qualquer ferramenta de CI
 
 # Tecnologias para automação
 -	Java
