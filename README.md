@@ -1,7 +1,9 @@
+# DESAFIO API REST ALELO # 
+
 # Introdução 
 API responsável pelo controle de livros dos usuários
 
-# Tecnologias 
+# Tecnologias back-end
 -	Java
 -	Spring
 -	Spring Boot
@@ -37,6 +39,14 @@ Serviços disponiveis:
 # O que será um diferencial
 1.	PIPE em qualquer ferramenta de CI
 
+# Tecnologias para automação
+-	Java
+-	Restassured
+-	Cucumber
+-	Junit
+
+# Envio do desafio
+-	Criar branch a partir da release como o seguinte padrão:	desafio/alelo_{nome do participante}
 
 Boa sorte!
 
