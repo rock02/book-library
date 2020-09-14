@@ -34,7 +34,9 @@ Serviços disponiveis:
  
  1. Serviços disponibilizados no swagger
 	
-	- POST; GET; PATH;
+	- POST; 
+	- GET; 
+	- PATH;
 
 # **O que será avaliado**
 1.Código fonte
