@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.alelo.adapter.StudentAdapter;
 import br.com.alelo.controller.dto.StudentDTO;
 import br.com.alelo.controller.dto.StudentUpdateDTO;
-import br.com.alelo.repository.StudentRepository;
+import br.com.alelo.repository.jpa.StudentRepository;
+import br.com.alelo.response.StudentResponse;
 import br.com.alelo.service.StudentService;
 import io.swagger.annotations.ApiParam;
 
@@ -38,7 +39,7 @@ public class StudentController implements StudentDefinition {
 
     @GetMapping
     @Override
-    public ResponseEntity<List<StudentDTO>> getAll() {
+    public ResponseEntity<List<StudentResponse>> getAll() {
 
         return new ResponseEntity<>( studentAdapter.studentEntityToDtoForList( studentRepository.findAll() ),
                 HttpStatus.OK );
@@ -46,14 +47,14 @@ public class StudentController implements StudentDefinition {
 
     @PostMapping
     @Override
-    public ResponseEntity<StudentDTO> create( @RequestBody @Valid StudentDTO studentDTO ) {
+    public ResponseEntity<StudentResponse> create( @RequestBody @Valid StudentDTO studentDTO ) {
 
         return new ResponseEntity<>( studentService.save( studentDTO ), HttpStatus.CREATED );
     }
     
     @PatchMapping( value = "/{cpf}")
     @Override
-    public ResponseEntity<StudentDTO> update( @PathVariable @CPF String cpf, @Valid @RequestBody @ApiParam( name = "student", required = true ) StudentUpdateDTO studentUpdateDTO ) {
+    public ResponseEntity<StudentResponse> update( @PathVariable @CPF String cpf, @Valid @RequestBody @ApiParam( name = "student", required = true ) StudentUpdateDTO studentUpdateDTO ) {
 
         return new ResponseEntity<>( studentService.update( cpf, studentUpdateDTO), HttpStatus.OK );
     }

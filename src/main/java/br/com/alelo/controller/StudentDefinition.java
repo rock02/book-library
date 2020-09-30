@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.alelo.controller.dto.StudentDTO;
 import br.com.alelo.controller.dto.StudentUpdateDTO;
+import br.com.alelo.response.StudentResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -25,14 +26,14 @@ public interface StudentDefinition {
             @ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 400, message = "Bad request"),
             @ApiResponse(code = 500, message = "Internal server error") })
-    ResponseEntity<List<StudentDTO>> getAll();
+    ResponseEntity<List<StudentResponse>> getAll();
 
     @ApiOperation(value = "create", nickname = "create", notes = "crated student")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Created"),
             @ApiResponse(code = 400, message = "Bad request"),
             @ApiResponse(code = 500, message = "Internal server error") })
-    ResponseEntity<StudentDTO> create( @Valid @RequestBody StudentDTO studentDTO );
+    ResponseEntity<StudentResponse> create( @Valid @RequestBody StudentDTO studentDTO );
     
     @ApiOperation(value = "update", nickname = "update", notes = "crated student")
     @ApiResponses(value = {
@@ -40,5 +41,5 @@ public interface StudentDefinition {
             @ApiResponse(code = 400, message = "Bad request"),
             @ApiResponse(code = 404, message = "Not fount"),
             @ApiResponse(code = 500, message = "Internal server error") })
-    ResponseEntity<StudentDTO> update( @PathVariable @CPF String cpf, @Valid @RequestBody @ApiParam( name = "student", required = true ) StudentUpdateDTO studentUpdateDTO );
+    ResponseEntity<StudentResponse> update( @PathVariable @CPF String cpf, @Valid @RequestBody @ApiParam( name = "student", required = true ) StudentUpdateDTO studentUpdateDTO );
 }

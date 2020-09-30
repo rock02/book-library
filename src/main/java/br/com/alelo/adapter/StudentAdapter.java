@@ -3,61 +3,57 @@ package br.com.alelo.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.alelo.controller.dto.StudentDTO;
 import br.com.alelo.domain.Student;
+import br.com.alelo.response.StudentResponse;
 
 @Component
 public class StudentAdapter {
 
-    @Autowired
-    private BookAdapter bookAdapter;
-    
     public Student studentDtoToEntity(StudentDTO studentDTO) {
         
         return Student.builder()
-                .name( studentDTO.getName() )
+                .name( studentDTO.getName().toUpperCase() )
                 .email( studentDTO.getEmail() )
                 .years( studentDTO.getYears() )
                 .cpf( studentDTO.getCpf() )
-                .books( bookAdapter.bookDtoToEntity( studentDTO.getBooks() ) )
                 .build();
     }
     
-    public StudentDTO studentEntityToDto(Student student) {
+    public StudentResponse studentEntityToDto(Student student) {
         
-        return StudentDTO.builder()
+        return StudentResponse.builder()
+                .id( student.getId() )
                 .name( student.getName() )
                 .email( student.getEmail() )
-                .years( student.getYears() )
+                .years( String.valueOf( student.getYears() ) )
                 .cpf( student.getCpf() )
-                .books( bookAdapter.bookEntityToDto( student.getBooks() ) )
                 .build();
     }
 
-    public List<StudentDTO> studentEntityToDtoForList( List<Student> students ) {
+    public List<StudentResponse> studentEntityToDtoForList( List<Student> students ) {
 
-        List<StudentDTO> listStudentsDto = new ArrayList<>();
+        List<StudentResponse> listStudentsResponse = new ArrayList<>();
 
         if (students == null) {
-            return listStudentsDto;
+            return listStudentsResponse;
         }
 
         students.forEach( student -> {
 
-            StudentDTO studentDTO = StudentDTO.builder()
+            StudentResponse studentResponse = StudentResponse.builder()
+                    .id( student.getId() )
                     .name( student.getName() )
                     .email( student.getEmail() )
-                    .years( student.getYears() )
+                    .years( String.valueOf( student.getYears() ) )
                     .cpf( student.getCpf() )
-                    .books( bookAdapter.bookEntityToDto( student.getBooks() ) )
                     .build();
 
-            listStudentsDto.add( studentDTO );
+            listStudentsResponse.add( studentResponse );
         } );
 
-        return listStudentsDto;
+        return listStudentsResponse;
     }
 }

@@ -1,11 +1,13 @@
 package br.com.alelo.controller.dto;
 
-import java.util.List;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,17 +21,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StudentDTO {
 
-    @NotBlank( message = "{required.field}" )
-    @Size(max = 20)
+    @JsonProperty("name")
+    @NotNull(message = "cannot be null")
+    @NotEmpty(message = "cannot be empty")
+    @Length( max = 20, message = "{invalid.name}" )
     private String name;
     
-    @NotBlank( message = "{required.field}" )
+    @JsonProperty("email")
+    @NotNull(message = "cannot be null")
+    @NotEmpty(message = "cannot be empty")
+    @Length( max = 20, message = "{invalid.email}" )
     private String email;
     
+    @Range(min=1, max=100)
     private int years;
     
+    @JsonProperty("cpf")
+    @NotNull(message = "cannot be null")
+    @NotEmpty(message = "cannot be empty")
+    @Length( max = 11, message = "{invalid.cpf}" )
     private String cpf;
-    
-    private List<BookDTO> books;
     
 }

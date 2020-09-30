@@ -1,4 +1,4 @@
-package br.com.alelo.repository;
+package br.com.alelo.repository.jpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

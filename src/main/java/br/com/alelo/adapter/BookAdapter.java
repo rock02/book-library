@@ -7,32 +7,52 @@ import org.springframework.stereotype.Component;
 
 import br.com.alelo.controller.dto.BookDTO;
 import br.com.alelo.domain.Book;
+import br.com.alelo.response.BookResponse;
 
 @Component
 public class BookAdapter {
 
-    public static List<BookDTO> bookEntityToDto( List<Book> books ) {
+    public Book bookDtoToEntity( BookDTO bookDTO ) {
 
-        List<BookDTO> listBooksDto = new ArrayList<>();
+        return Book.builder()
+                .name( bookDTO.getName() )
+                .author( bookDTO.getAuthor() )
+                .ageGoup( bookDTO.getAgeGroupEnum().name() )
+                .build();
+    }
+
+    public BookResponse bookEntityToDto( Book book ) {
+
+        return BookResponse.builder()
+                .id( book.getId() )
+                .name( book.getName() )
+                .author( book.getAuthor() )
+                .ageGroup( book.getAgeGoup() )
+                .build();
+    }
+    
+    public static List<BookResponse> booksEntityToDtoForList( List<Book> books ) {
+
+        List<BookResponse> listBooksResponse = new ArrayList<>();
 
         if (books == null) {
-            return listBooksDto;
+            return listBooksResponse;
         }
 
         books.forEach( book -> {
-            BookDTO bookDto = BookDTO.builder()
+            BookResponse bookDto = BookResponse.builder()
+                    .id( book.getId() )
                     .name( book.getName() )
                     .author( book.getAuthor() )
-                    .title( book.getTitle() )
                     .build();
 
-            listBooksDto.add( bookDto );
+            listBooksResponse.add( bookDto );
         } );
 
-        return listBooksDto;
+        return listBooksResponse;
     }
     
-    public static List<Book> bookDtoToEntity( List<BookDTO> booksDTO ) {
+    public static List<Book> bookDtoToEntityForList( List<BookDTO> booksDTO ) {
         
         List<Book> listBooksEntity = new ArrayList<>();
         
@@ -44,7 +64,6 @@ public class BookAdapter {
             Book bookDto = Book.builder()
                     .name( book.getName() )
                     .author( book.getAuthor() )
-                    .title( book.getTitle() )
                     .build();
             
             listBooksEntity.add( bookDto );

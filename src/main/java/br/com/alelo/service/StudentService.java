@@ -11,7 +11,8 @@ import br.com.alelo.controller.dto.StudentUpdateDTO;
 import br.com.alelo.domain.Student;
 import br.com.alelo.enums.ExceptionsMessagesEnum;
 import br.com.alelo.exception.BadRequest;
-import br.com.alelo.repository.StudentRepository;
+import br.com.alelo.repository.jpa.StudentRepository;
+import br.com.alelo.response.StudentResponse;
 
 @Service
 public class StudentService {
@@ -22,17 +23,19 @@ public class StudentService {
     @Autowired
     private StudentAdapter studentAdapter;
     
-    public StudentDTO save(StudentDTO studentDTO) {
+    public StudentResponse save(StudentDTO studentDTO) {
         
         BadRequest.checkThrow( Objects.nonNull( studentRepository.findByCpf( studentDTO.getCpf() ) ),
                 ExceptionsMessagesEnum.CPF_ALREADY_REGISTERED );
         
         Student student = studentRepository.save( studentAdapter.studentDtoToEntity( studentDTO ) );
         
-        return studentAdapter.studentEntityToDto( student );
+        return StudentResponse.builder()
+                .id( student.getId() )
+                .build();
     }
     
-    public StudentDTO update(String cpf, StudentUpdateDTO studentUpdateDTO) {
+    public StudentResponse update(String cpf, StudentUpdateDTO studentUpdateDTO) {
         
         Student student = studentRepository.findByCpf( cpf );
         
