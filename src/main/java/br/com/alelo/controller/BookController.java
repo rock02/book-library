@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +20,7 @@ import br.com.alelo.controller.dto.BookDTO;
 import br.com.alelo.repository.jpa.BookRepository;
 import br.com.alelo.response.BookResponse;
 import br.com.alelo.service.BookService;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/books")
@@ -46,10 +48,10 @@ public class BookController implements BookDefinition {
         return new ResponseEntity<>( bookService.save( bookDTO ), HttpStatus.CREATED );
     }
 
-    @PutMapping
+    @PutMapping("/{bookId}")
     @Override
-    public ResponseEntity<BookResponse> update( @Valid Long id, @Valid @RequestBody BookDTO bookDTOUpdate ) {
-        return new ResponseEntity<>( bookService.update( id, bookDTOUpdate ), HttpStatus.OK );
+    public ResponseEntity<BookResponse> update( @PathVariable @ApiParam( value = "bookId", required = true ) Long bookId, @Valid @RequestBody BookDTO bookDTOUpdate ) {
+        return new ResponseEntity<>( bookService.update( bookId, bookDTOUpdate ), HttpStatus.OK );
     }
 
 }

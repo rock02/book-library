@@ -57,6 +57,7 @@ public class BookService {
     private Book mountUpdate(Book book, BookDTO bookDTOUpdate) {
         
         return Book.builder()
+        .id(book.getId())
         .name( bookDTOUpdate.getName() )
         .author( bookDTOUpdate.getAuthor() )
         .build();

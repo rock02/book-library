@@ -39,5 +39,5 @@ public interface BookDefinition {
             @ApiResponse(code = 400, message = "Bad request"),
             @ApiResponse(code = 404, message = "Not fount"),
             @ApiResponse(code = 500, message = "Internal server error") })
-    ResponseEntity<BookResponse> update( @PathVariable @Valid Long id, @Valid @RequestBody @ApiParam( name = "book", required = true ) BookDTO bookDTO );
+    ResponseEntity<BookResponse> update( @PathVariable @ApiParam( value = "bookId", required = true ) Long bookId, @Valid @RequestBody @ApiParam( name = "book", required = true ) BookDTO bookDTO );
 }

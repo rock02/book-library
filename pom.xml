@@ -15,16 +15,13 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
 		<lombok.version>1.18.12</lombok.version>
 		<swagger.model>1.5.21</swagger.model>
 		<swagger.springfox>2.9.2</swagger.springfox>
 		<commons.version>3.11</commons.version>
-		<cucumber.version>5.6.0</cucumber.version>
-		<restassured.version>4.2.0</restassured.version>
-		<reporting.monochromata>4.0.40</reporting.monochromata>
-        <github.javafaker>1.0.2</github.javafaker>
+		<karate.version>0.9.5</karate.version>
 	</properties>
 
 	<dependencies>
@@ -50,7 +47,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -95,77 +92,19 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
-		
-		<!-- integration-test -->
-        <!-- cucumber -->
+
+		<!-- karate -->
 		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-junit</artifactId>
-			<version>${cucumber.version}</version>
+			<groupId>com.intuit.karate</groupId>
+			<artifactId>karate-apache</artifactId>
+			<version>${karate.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-spring</artifactId>
-			<version>${cucumber.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-java</artifactId>
-			<version>${cucumber.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>de.monochromata.cucumber</groupId>
-			<artifactId>reporting-plugin</artifactId>
-			<version>${reporting.monochromata}</version>
-			<scope>test</scope>
-		</dependency>
-		
-		<!-- rest-assured -->
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>spring-web-test-client</artifactId>
-			<version>${restassured.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>rest-assured</artifactId>
-			<version>${restassured.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>json-path</artifactId>
-			<version>${restassured.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>xml-path</artifactId>
-			<version>${restassured.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>json-schema-validator</artifactId>
-			<version>${restassured.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.github.javafaker</groupId>
-			<artifactId>javafaker</artifactId>
-			<version>${github.javafaker}</version>
+			<groupId>com.intuit.karate</groupId>
+			<artifactId>karate-junit4</artifactId>
+			<version>${karate.version}</version>
 			<scope>test</scope>
 		</dependency>
 		
