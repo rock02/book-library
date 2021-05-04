@@ -25,6 +25,8 @@
 		<restassured.version>4.2.0</restassured.version>
 		<reporting.monochromata>4.0.40</reporting.monochromata>
         <github.javafaker>1.0.2</github.javafaker>
+        <maven.failsafe>3.0.0-M5</maven.failsafe>
+        <skipIntegrationTests>false</skipIntegrationTests>
 	</properties>
 
 	<dependencies>
@@ -172,12 +174,38 @@
 	</dependencies>
 
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+    			<groupId>org.apache.maven.plugins</groupId>
+    			<artifactId>maven-failsafe-plugin</artifactId>
+    			<version>${maven.failsafe}</version>
+    			<configuration>
+	                <includes>
+	                    <include>**/*IT.java</include>
+	                </includes>
+	                <skipTests>${skipIntegrationTests}</skipTests>
+	            </configuration>
+    			<executions>
+			        <execution>
+			            <phase>integration-test</phase>
+			            <goals>
+			                <goal>integration-test</goal>
+			            </goals>
+			        </execution>
+	        		<execution>
+			            <id>failsafe-verify</id>
+			            <phase>verify</phase>
+			            <goals>
+			                <goal>verify</goal>
+			            </goals>
+	        		</execution>
+    			</executions>
+			</plugin>          
+        </plugins>
+    </build>
 </project>
