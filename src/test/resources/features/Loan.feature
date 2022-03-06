@@ -12,9 +12,9 @@ Feature: Responsavel pelos emprestimos
 		
 		Examples:
 			| 	BOOK	|	STUDENT		|	RETURN		|
-			|	ADULT	|	20			|	CREATED		|
-			|	YOUNG	|	19			|	CREATED		|
-			|	OLD		|	60			|	CREATED		|
+			|	ADULT	|	20		|	CREATED		|
+			|	YOUNG	|	19		|	CREATED		|
+			|	OLD	|	60		|	CREATED		|
 		
 	@realizar_criacao_de_emprestimos_duplicado_para_um_estudante
 	Scenario: Realizar criacao de emprestimos duplicado para um estudante
